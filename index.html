@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards Futurista</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .flashcard {
+            background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+            overflow: hidden;
+            margin: 10px;
+            width: 300px;
+        }
+        .flashcard:hover {
+            transform: scale(1.05);
+        }
+        h2 {
+            font-size: 20px;
+            margin: 0;
+        }
+        .answer {
+            font-size: 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+        }
+        .answer.show {
+            max-height: 100px; /* Ajuste conforme necessário */
+            opacity: 1;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div id="flashcards-container"></div>
+
+<script>
+    const flashcards = [
+        { question: "Qual é a capital do Brasil?", answer: "Brasília" },
+        { question: "Quem escreveu 'Dom Casmurro'?", answer: "Machado de Assis" },
+        { question: "Qual é o maior planeta do sistema solar?", answer: "Júpiter" },
+        { question: "O que é a fotossíntese?", answer: "Processo de conversão de luz solar em energia" },
+        { question: "Qual é o elemento químico com símbolo O?", answer: "Oxigênio" },
+        { question: "Quem pintou a Mona Lisa?", answer: "Leonardo da Vinci" },
+        { question: "Qual é o continente mais populoso?", answer: "Ásia" },
+        { question: "Qual é a fórmula da água?", answer: "H₂O" },
+        { question: "Quem foi Albert Einstein?", answer: "Físico teórico" },
+        { question: "Qual é a língua mais falada no mundo?", answer: "Mandarim" },
+        { question: "Qual é a capital da França?", answer: "Paris" },
+        { question: "Quem descobriu a América?", answer: "Cristóvão Colombo" },
+        { question: "Qual é a moeda do Japão?", answer: "Iene" },
+        { question: "Quem escreveu 'O Pequeno Príncipe'?", answer: "Antoine de Saint-Exupéry" },
+        { question: "Qual é a capital da Itália?", answer: "Roma" },
+    ];
+
+    const container = document.getElementById('flashcards-container');
+
+    flashcards.forEach((flashcard) => {
+        const cardDiv = document.createElement('div');
+        cardDiv.classList.add('flashcard');
+
+        const questionElement = document.createElement('h2');
+        questionElement.innerText = flashcard.question;
+
+        const answerElement = document.createElement('p');
+        answerElement.classList.add('answer');
+        answerElement.innerText = flashcard.answer;
+
+        const button = document.createElement('button');
+        button.innerText = "Mostrar Resposta";
+        button.onclick = () => {
+            answerElement.classList.toggle('show');
+        };
+
+        cardDiv.appendChild(questionElement);
+        cardDiv.appendChild(answerElement);
+        cardDiv.appendChild(button);
+        container.appendChild(cardDiv);
+    });
+</script>
+
+</body>
+</html>
